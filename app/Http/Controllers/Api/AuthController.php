@@ -6,7 +6,6 @@ use App\Http\Requests\Api\Auth\LoginRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\UserRepositoryInterface;
 use \Illuminate\Http\JsonResponse;
-use App\Models\User;
 
 class AuthController extends Controller
 {
