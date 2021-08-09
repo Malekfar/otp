@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Api\AuthController as AuthController;
+use \App\Http\Controllers\Api\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,5 +15,6 @@ use \App\Http\Controllers\Api\AuthController as AuthController;
 */
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
+    Route::post('send/token', [AuthController::class, 'sendToken']);
     Route::post('login', [AuthController::class, 'login']);
 });

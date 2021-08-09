@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @method static User updateOrCreate(array $array, array $array)
+ * @method static wherePhone(string $phone)
  */
 class User extends Authenticatable implements JWTSubject
 {

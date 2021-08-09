@@ -11,4 +11,9 @@ class UserService implements UserRepositoryInterface
     {
         return User::updateOrCreate($array, $fields);
     }
+
+    public function findByPhoneAndToken(string $phone, string $token)
+    {
+        return User::wherePhone($phone)->whereToken($token)->first();
+    }
 }

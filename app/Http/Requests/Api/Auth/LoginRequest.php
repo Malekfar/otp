@@ -6,10 +6,20 @@ use App\Rules\IsPhone;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
+ * @property mixed token
  * @property mixed phone
  */
 class LoginRequest extends FormRequest
 {
+
+    protected function prepareForValidation()
+    {
+        $this->request->add([
+            'phone' => makeEnglishNumber($this->get('phone')),
+            'token' => makeEnglishNumber($this->get('token')),
+        ]);
+    }
+
     public function authorize(): bool
     {
         return true;
@@ -18,14 +28,17 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone' => ['required', new IsPhone()]
+            'phone' => ['required', 'exists:users,phone', new IsPhone()],
+            'token' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'phone.required' => 'فیلد تلفن همراه الزامی میباشد.'
+            'phone.required'    => 'فیلد تلفن همراه الزامی میباشد.',
+            'phone.exists'      => 'تلفن همراه در سامانه موجود نمیباشد.',
+            'token.required'    => 'رمز یکبار مصرف الزامی میباشد.',
         ];
     }
 }
