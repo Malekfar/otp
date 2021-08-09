@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * @method static updateOrCreate(array $array, array $array)
+ * @method static User updateOrCreate(array $array, array $array)
  */
 class User extends Authenticatable implements JWTSubject
 {

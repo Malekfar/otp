@@ -1,8 +1,14 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Eloquent;
 
-class UserService
+use App\Models\User;
+
+class UserService implements UserRepositoryInterface
 {
 
+    public function updateOrCreate(array $array, array $fields): User
+    {
+        return User::updateOrCreate($array, $fields);
+    }
 }
