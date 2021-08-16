@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\Auth\LoginRequest;
 use App\Http\Requests\Api\Auth\SendTokenRequest;
 use App\Http\Controllers\Controller;
-use App\Repositories\Eloquent\UserRepositoryInterface;
+use App\Services\UserService;
 use App\Tools\SmsService;
 use \Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -14,9 +14,9 @@ class AuthController extends Controller
 {
     private $service;
 
-    public function __construct(UserRepositoryInterface $repository)
+    public function __construct(UserService $service)
     {
-        $this->service = $repository;
+        $this->service = $service;
     }
 
     public function sendToken(SendTokenRequest $request): JsonResponse
